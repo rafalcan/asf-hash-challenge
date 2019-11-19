@@ -1,0 +1,30 @@
+{
+  "extends":                        ["eslint:recommended", "eslint-config-jss"],
+  "env":                            {
+      "node":                       true,
+      "browser":                    true,
+      "es6":                        true,
+      "jest":                       true,
+  },
+  "parserOptions":                  {
+     "ecmaVersion":                 8,
+     "ecmaFeatures":                {
+         "jsx":                     true,
+         "modules":                 true
+    },
+     "sourceType":                  "module",
+     "allowImportExportEverywhere": false,
+     "codeFrame":                   false,
+  },
+  "rules":                          {
+    "import/no-unresolved":         [2, { ignore: ['@app', '@assets'] }],
+    "no-console":                   "off",
+    "strict":                       0,
+    "no-const-assign":              "warn",
+    "linebreak-style":              0,
+    "indent":                       ["error", 2],
+    "semi":                         ["error", "always"],
+    "no-useless-escape":            0,
+    "quotes":                       ["error", "single", { "allowTemplateLiterals": true }],
+  },
+}
