@@ -9,8 +9,20 @@ const app = {
     height: '100%',
     width: '100%',
   },
-  'h1, h2, h3, input, label, p': {
+  'h1, h2, input, label, p': {
     fontFamily: themeVars.fontFamily,
+    marginTop: 0,
+  },
+  h1: {
+    fontSize: themeVars.fontSizeH1,
+  },
+  'h2, p': {
+    fontSize: themeVars.fontSizeBase,
+  },
+  fieldset: {
+    border: 0,
+    display: 'block',
+    padding: 0,
   },
 };
 
