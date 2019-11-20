@@ -13,12 +13,12 @@ const styles = {
 const { classes } = jss.createStyleSheet(styles).attach();
 
 const App = () => {
-  const element = document.createElement('div');
+  const container = document.createElement('div');
 
-  element.className = classes.app;
-  element.appendChild(Home());
+  container.className = classes.app;
+  container.appendChild(Home());
 
-  return element;
+  return container;
 };
 
 export default App;

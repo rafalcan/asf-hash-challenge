@@ -1,6 +1,8 @@
 import App from './App';
 
-it('should renders without crashing', () => {
-  const app = App();
-  expect(app).toBeTruthy();
+describe('App component tests', () => {
+  it('should renders without crashing', () => {
+    const app = App();
+    expect(app).toBeTruthy();
+  });
 });
