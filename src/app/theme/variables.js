@@ -1,16 +1,19 @@
 export default {
   // Colors
-  black: '#000000',
-  gray: '#656565',
-  grayLight: '#CECECE',
+  black: '#000',
   blue: '#3D75BB',
   blueLight: '#5D9CEC',
+  gray: '#656565',
+  grayLight: '#CECECE',
+  white: '#fff',
 
   // Specific
   backgroundSide: 'rgba(209, 220, 227, 0.18)',
-  borderField: [1, 'solid', '#DDE6E9'],
-  borderFieldFocus: [1, 'solid', '#66AFE9'],
+  borderField: '#DDE6E9',
+  borderFieldFocus: '#66AFE9',
   fontFamily: 'Source Sans Pro, sans-serif',
+  fontSizeH1: 24,
+  fontSizeBase: 16,
   lineSide: '#5D9CEC',
   radius: 4,
 };

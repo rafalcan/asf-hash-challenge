@@ -38,6 +38,9 @@ Runs the tests in the mode coverage.
 ```
 src/                              source code
 |- app/                           logic part of the source code
+|  |- pages/                      pages components and your child components
+|  |- theme/                      files related to global styles
+|  |- +- ...                      root app and jss configuration
 |- assets/                        assets (images, fonts, sounds, videos...)
 |- index.html                     main html of the project
 |- +- ...                         default files for favicon and indexation
