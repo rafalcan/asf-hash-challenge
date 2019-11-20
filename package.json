@@ -1,0 +1,84 @@
+{
+  "name": "asf-hash-challenge",
+  "version": "1.0.0",
+  "author": "Rafael Gomes Alcantara",
+  "description": "Challenge for create anticipation simulation form for Hash",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafalcan/asf-hash-challenge.git"
+  },
+  "keywords": [
+    "javascript",
+    "webpack"
+  ],
+  "bugs": {
+    "url": "https://github.com/rafalcan/asf-hash-challenge/issues"
+  },
+  "homepage": "https://github.com/rafalcan/asf-hash-challenge#readme",
+  "scripts": {
+    "serve": "NODE_ENV=development webpack-dev-server",
+    "serve:staging": "NODE_ENV=staging webpack-dev-server",
+    "build": "NODE_ENV=production webpack",
+    "test": "NODE_ENV=test jest",
+    "coverage": "NODE_ENV=test jest --coverage"
+  },
+  "browserslist": [
+    "> 0.2%",
+    "not dead",
+    "not ie <= 10",
+    "not op_mini all"
+  ],
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "useBuiltIns": "entry",
+          "corejs": 3
+        }
+      ]
+    ]
+  },
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "moduleNameMapper": {
+      "@app(.*)$": "<rootDir>/src/app/$1",
+      "@assets(.*)$": "<rootDir>/src/assets/$1"
+    },
+    "transform": {
+      "^.+\\.js$": "babel-jest",
+      ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub"
+    },
+    "verbose": true
+  },
+  "dependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.0.5",
+    "core-js": "^3.4.1",
+    "deepmerge": "^4.2.2",
+    "file-loader": "^4.2.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "image-webpack-loader": "^6.0.0",
+    "jss": "10.0.0",
+    "jss-preset-default": "10.0.0",
+    "terser-webpack-plugin": "^2.2.1",
+    "url-loader": "^2.2.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0",
+    "webpack-merge": "^4.2.2"
+  },
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-config-jss": "^5.0.1",
+    "jest": "^24.9.0",
+    "jest-transform-stub": "^2.0.0"
+  }
+}
