@@ -1,5 +1,6 @@
 import jss from '@app/jss';
 import themeVars from '@app/theme/variables';
+import StateManager from '@app/services/StateManager';
 import Form from './components/Form';
 import Sidebar from './components/Sidebar';
 
@@ -19,10 +20,16 @@ const { classes } = jss.createStyleSheet(styles).attach();
 
 const Home = () => {
   const container = document.createElement('div');
+  const stateManager = new StateManager([
+    { label: 'Amanhã', value: '0,00' },
+    { label: 'Em 15 dias', value: '0,00' },
+    { label: 'Em 30 dias', value: '0,00' },
+    { label: 'Em 90 dias', value: '0,00' },
+  ]);
 
   container.className = classes.home;
-  container.appendChild(Form());
-  container.appendChild(Sidebar());
+  container.appendChild(Form(stateManager));
+  container.appendChild(Sidebar(stateManager));
 
   return container;
 };
