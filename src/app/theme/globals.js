@@ -9,15 +9,20 @@ const app = {
     height: '100%',
     width: '100%',
   },
-  'h1, h2, input, label, p': {
+  'h1, h2, input, label, p, li': {
     fontFamily: themeVars.fontFamily,
     marginTop: 0,
   },
   h1: {
     fontSize: themeVars.fontSizeH1,
   },
-  'h2, p': {
+  'h2, p, li': {
     fontSize: themeVars.fontSizeBase,
+  },
+  ul: {
+    listStyle: 'none',
+    margin: 0,
+    padding: 0,
   },
   fieldset: {
     border: 0,

@@ -19,7 +19,7 @@
   "scripts": {
     "serve": "NODE_ENV=development webpack-dev-server",
     "serve:staging": "NODE_ENV=staging webpack-dev-server",
-    "build": "NODE_ENV=production webpack",
+    "build": "npm run test && NODE_ENV=production webpack",
     "test": "NODE_ENV=test jest",
     "coverage": "NODE_ENV=test jest --coverage"
   },
@@ -50,7 +50,7 @@
     },
     "transform": {
       "^.+\\.js$": "babel-jest",
-      ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub"
+      ".+\\.(css|styl|less|sass|scss|png|jpg|svg|ttf|woff|woff2)$": "jest-transform-stub"
     },
     "verbose": true
   },
