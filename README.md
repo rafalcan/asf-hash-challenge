@@ -37,9 +37,10 @@ Runs the tests in the mode coverage.
 ## Project Structure
 ```
 src/                              source code
-|- app/                           logic part of the source code
+|- app/                           components and services of the source code
 |  |- pages/                      pages components and your child components
-|  |- theme/                      files related to global styles
+|  |- theme/                      global styles of application
+|  |- services/                   core logic of the application
 |  |- +- ...                      root app and jss configuration
 |- assets/                        assets (images, fonts, sounds, videos...)
 |- index.html                     main html of the project
