@@ -19,11 +19,6 @@ const styles = {
     opacity: 0.3,
     margin: [6, 0, 28],
   },
-  list: {
-    listStyle: 'none',
-    margin: 0,
-    padding: 0,
-  },
   item: {
     color: themeVars.blueLight,
     fontStyle: 'italic',
@@ -48,8 +43,6 @@ const Sidebar = (stateManager) => {
 
   const renderItems = () => {
     const container = document.createElement('ul');
-
-    container.className = classes.list;
 
     subscribe((state) => {
       requestAnimationFrame(() => {
