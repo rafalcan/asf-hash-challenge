@@ -1,14 +1,15 @@
 import jss from '@app/jss';
-import themeVars from '@app/theme/variables';
+import { createState } from '@app/helpers';
+import { colors, components } from '@app/theme/variables';
 import StateManager from '@app/services/StateManager';
 import Form from './components/Form';
 import Sidebar from './components/Sidebar';
 
 const styles = {
   home: {
-    background: themeVars.white,
+    background: colors.white,
     border: [1, 'solid', '#D1DCE3'],
-    borderRadius: themeVars.radius,
+    borderRadius: components.radius,
     display: 'flex',
     flexDirection: 'row',
     height: 389,
@@ -20,12 +21,7 @@ const { classes } = jss.createStyleSheet(styles).attach();
 
 const Home = () => {
   const container = document.createElement('div');
-  const stateManager = new StateManager([
-    { label: 'Amanhã', value: '0,00' },
-    { label: 'Em 15 dias', value: '0,00' },
-    { label: 'Em 30 dias', value: '0,00' },
-    { label: 'Em 90 dias', value: '0,00' },
-  ]);
+  const stateManager = new StateManager(createState([0, 0, 0, 0]));
 
   container.className = classes.home;
   container.appendChild(Form(stateManager));

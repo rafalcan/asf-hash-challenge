@@ -1,5 +1,8 @@
 import jss from '@app/jss';
-import themeVars from '@app/theme/variables';
+import { colors } from '@app/theme/variables';
+import { validation, createState } from '@app/helpers';
+import StateManager from '@app/services/StateManager';
+import FieldSet from '@app/components/FieldSet';
 
 const styles = {
   form: {
@@ -7,117 +10,71 @@ const styles = {
     width: 377,
   },
   title: {
-    color: themeVars.gray,
+    color: colors.gray,
     marginBottom: 24,
-  },
-  label: {
-    color: themeVars.gray,
-    display: 'block',
-    fontSize: 14,
-    marginBottom: 7,
-  },
-  obs: {
-    color: themeVars.grayLight,
-    display: 'block',
-    fontSize: 11,
-    fontWeight: 'bold',
-    margin: [4, 0, 0],
-  },
-  fieldset: {
-    marginBottom: 28,
-  },
-  field: {
-    border: [1, 'solid', themeVars.borderField],
-    borderRadius: themeVars.radius,
-    display: 'block',
-    fontSize: 14,
-    outline: 0,
-    padding: [10, 14, 9],
-    width: 250,
-    '&:focus': {
-      border: [1, 'solid', themeVars.borderFieldFocus],
-    },
   },
 };
 
 const { classes } = jss.createStyleSheet(styles).attach();
 
 const Form = (stateManager) => {
-  const { getState, setState } = stateManager;
-  const fieldsValidation = [];
+  if (!(stateManager instanceof StateManager)) throw new Error('missing state manager');
 
-  const renderField = (props) => {
-    const fieldSet = document.createElement('fieldset');
-    const field = document.createElement('input');
-
-    field.className = classes.field;
-    field.id = props.id;
-    field.name = props.name;
-    field.type = props.type;
-    field.value = props.value;
-    field.addEventListener('keyup', props.keyup, false);
-
-    fieldSet.className = classes.fieldset;
-    fieldSet.innerHTML = `
-      <label class="${classes.label}" for="${props.id}">${props.label} *</label>
-    `;
-    fieldSet.appendChild(field);
-
-    if (props.obs) {
-      fieldSet.insertAdjacentHTML('beforeend', `
-        <p class="${classes.obs}">${props.obs}</p>
-      `);
-    }
-
-    fieldsValidation.push(field);
-
-    return fieldSet;
-  };
+  const { setState } = stateManager;
 
   const renderForm = () => {
     const container = document.createElement('form');
+    let fields = [];
 
-    const fieldSetSale = renderField({
+    const keyup = function keyup() {
+      if (validation(fields)) {
+        return setState(
+          createState([Math.random(), Math.random(), Math.random(), Math.random()]),
+        );
+      }
+
+      return setState(
+        createState([0, 0, 0, 0]),
+      );
+    };
+
+    const fieldSetSale = FieldSet({
       label: 'Informe o valor da venda',
       id: 'sale',
       name: 'sale',
       type: 'text',
       value: '',
-      keyup() {
-        const state = getState();
-        state[1].value = this.value;
-        setState(state);
-      },
+      min: 1,
+      mask: true,
+      keyup,
     });
-    const fieldSetInstallments = renderField({
+    const fieldSetInstallments = FieldSet({
       label: 'Em quantas parcelas',
       obs: 'Máximo de 12 parcelas',
       id: 'installments',
       name: 'installments',
       type: 'number',
       value: '',
-      keyup() {
-        const state = getState();
-        state[2].value = this.value;
-        setState(state);
-      },
+      min: 1,
+      max: 12,
+      keyup,
     });
-    const fieldSetMDR = renderField({
+    const fieldSetMDR = FieldSet({
       label: 'Informe o percentual de MDR',
       id: 'mdr',
       name: 'mdr',
       type: 'number',
       value: '',
-      keyup() {
-        const state = getState();
-        state[3].value = this.value;
-        setState(state);
-      },
+      min: 1,
+      max: 100,
+      keyup,
     });
 
+    container.novalidate = true;
     container.appendChild(fieldSetSale);
     container.appendChild(fieldSetInstallments);
     container.appendChild(fieldSetMDR);
+    fields = container.querySelectorAll('input');
 
     return container;
   };
