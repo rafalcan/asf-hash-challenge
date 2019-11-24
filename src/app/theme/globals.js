@@ -1,23 +1,23 @@
 import * as deepmerge from 'deepmerge';
 import jss from '@app/jss';
-import themeVars from './variables';
+import { colors, components } from './variables';
 import normalize from './normalize';
 
 const app = {
   'html, body': {
-    color: themeVars.black,
+    color: colors.black,
     height: '100%',
     width: '100%',
   },
   'h1, h2, input, label, p, li': {
-    fontFamily: themeVars.fontFamily,
+    fontFamily: components.fontFamily,
     marginTop: 0,
   },
   h1: {
-    fontSize: themeVars.fontSizeH1,
+    fontSize: components.fontSizeH1,
   },
   'h2, p, li': {
-    fontSize: themeVars.fontSizeBase,
+    fontSize: components.fontSizeBase,
   },
   ul: {
     listStyle: 'none',

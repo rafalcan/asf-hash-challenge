@@ -1,26 +1,27 @@
 import jss from '@app/jss';
-import themeVars from '@app/theme/variables';
+import { colors, components } from '@app/theme/variables';
+import StateManager from '@app/services/StateManager';
 
 const styles = {
   sidebar: {
-    background: themeVars.backgroundSide,
+    background: components.backgroundSide,
     padding: [83, 35],
     width: 231,
   },
   title: {
-    color: themeVars.blue,
+    color: colors.blue,
     fontStyle: 'italic',
     textTransform: 'uppercase',
     marginBottom: 0,
   },
   line: {
     border: 0,
-    borderTop: [1, 'solid', themeVars.blueLight],
+    borderTop: [1, 'solid', colors.blueLight],
     opacity: 0.3,
     margin: [6, 0, 28],
   },
   item: {
-    color: themeVars.blueLight,
+    color: colors.blueLight,
     fontStyle: 'italic',
     marginBottom: 28,
   },
@@ -29,12 +30,14 @@ const styles = {
 const { classes } = jss.createStyleSheet(styles).attach();
 
 const Sidebar = (stateManager) => {
+  if (!(stateManager instanceof StateManager)) throw new Error('missing state manager');
+
   const { subscribe, getState } = stateManager;
 
   const updateItems = (container, state) => {
     container.innerHTML = state.map(item => `
       <li class="${classes.item}">
-        ${item.label}: <strong>R$ ${item.value}</strong>
+        ${item.label}: <strong>${item.value}</strong>
       </li>
     `).join('\n');
 
