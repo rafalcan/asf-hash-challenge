@@ -1,21 +1,21 @@
 export default function StateManager(initialState = {}) {
   // Private variables
-  const event = [];
+  const observers = [];
   let state = initialState;
 
   // Private methods
-  const subscribe = (callback) => {
-    const index = event.push(callback) - 1;
+  const subscribe = (observer) => {
+    const index = observers.push(observer) - 1;
 
     return {
       remove: () => {
-        delete event[index];
+        delete observers[index];
       },
     };
   };
 
-  const publish = () => {
-    event.map(callback => callback(state));
+  const notify = () => {
+    observers.map(observer => observer(state));
   };
 
   const setState = (newState) => {
@@ -31,7 +31,7 @@ export default function StateManager(initialState = {}) {
   this.setState = new Proxy(setState, {
     apply(target, thisArgs, argumentsList) {
       Reflect.apply(target, thisArgs, argumentsList);
-      publish();
+      notify();
     },
   });
 
