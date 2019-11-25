@@ -1,11 +1,31 @@
 import {
+  findById,
   fromCurrency,
   toCurrency,
   validation,
-  createState,
+  calculation,
 } from './helpers';
 
 describe('Helpers tests', () => {
+  it('should return an item by id from a collection', () => {
+    const item = { id: 'field1', name: 'field1' };
+    const list = [
+      item,
+    ];
+    expect(findById(list, 'field1')).toEqual(item);
+  });
+
+  it('should return an item by id from a NodeList', () => {
+    document.body.innerHTML = `
+      <input id="field1" name="field1">
+    `;
+    const list = document.querySelectorAll('input');
+    const item = document.createElement('input');
+    item.id = 'field1';
+    item.name = 'field1';
+    expect(findById(list, 'field1')).toEqual(item);
+  });
+
   it('should remove money format', () => {
     expect(fromCurrency('R$ 1.000,00')).toEqual(1000);
   });
@@ -24,7 +44,6 @@ describe('Helpers tests', () => {
         required: true,
         number: true,
         mask: true,
-        min: 1,
       },
     ]);
 
@@ -40,20 +59,15 @@ describe('Helpers tests', () => {
         value: '',
         required: true,
         number: true,
-        min: 1,
-        max: 12,
       },
     ]);
 
     expect(result).toBeFalsy();
   });
 
-  it('should return a state object', () => {
-    expect(createState([0, 0, 0, 0])).toEqual([
-      { label: 'Amanhã', value: 'R$ 0,00' },
-      { label: 'Em 15 dias', value: 'R$ 0,00' },
-      { label: 'Em 30 dias', value: 'R$ 0,00' },
-      { label: 'Em 90 dias', value: 'R$ 0,00' },
+  it('should return correct values', () => {
+    expect(calculation(150, 3, 4)).toEqual([
+      132.48, 135.36, 138.24, 144.00,
     ]);
   });
 });

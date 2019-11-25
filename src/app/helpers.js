@@ -1,5 +1,17 @@
 import config from './config';
 
+const findById = (list, value) => {
+  if (list instanceof NodeList) {
+    for (const item of list.values()) {
+      if (item.id === value) return item;
+    }
+
+    return false;
+  }
+
+  return list.find(item => item.id === value);
+};
+
 const fromCurrency = (string) => {
   const result = string
     .replace('R$ ', '')
@@ -44,19 +56,31 @@ const validation = (fields) => {
   return true;
 };
 
-const createState = values => config.days.map((day, index) => {
-  const labels = config.labels;
-  const value = values[index];
+const calculation = (sale, installments, mdr) => {
+  const percent = mdr / 100;
+  const division = sale / installments;
+  const divisionMDR = division - (division * percent);
 
-  return {
-    label: index === 0 ? labels.tomorrow : `${labels.in} ${day} ${labels.days}`,
-    value: value ? toCurrency(value) : toCurrency(0),
+  const defineDays = (day, step) => {
+    const calc = step - day;
+    return calc > 0 ? calc : 0;
   };
-});
+
+  return config.days.map((day) => {
+    let sum = 0;
+
+    for (let i = 1; i <= installments; i++) {
+      sum += divisionMDR - (divisionMDR * defineDays(day, i * 30) * percent / 30);
+    }
+
+    return sum;
+  });
+};
 
 export {
+  findById,
   fromCurrency,
   toCurrency,
   validation,
-  createState,
+  calculation,
 };

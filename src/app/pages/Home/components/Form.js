@@ -1,7 +1,12 @@
 import jss from '@app/jss';
 import { colors } from '@app/theme/variables';
-import { validation, createState } from '@app/helpers';
-import StateManager from '@app/services/StateManager';
+import {
+  findById,
+  fromCurrency,
+  validation,
+  calculation,
+} from '@app/helpers';
+import StateManager, { createStateByDays } from '@app/services/StateManager';
 import FieldSet from '@app/components/FieldSet';
 
 const styles = {
@@ -18,7 +23,7 @@ const styles = {
 const { classes } = jss.createStyleSheet(styles).attach();
 
 const Form = (stateManager) => {
-  if (!(stateManager instanceof StateManager)) throw new Error('missing state manager');
+  if (typeof stateManager === 'undefined') throw new Error('missing state manager');
 
   const { setState } = stateManager;
 
@@ -28,14 +33,18 @@ const Form = (stateManager) => {
 
     const keyup = function keyup() {
       if (validation(fields)) {
-        return setState(
-          createState([Math.random(), Math.random(), Math.random(), Math.random()]),
-        );
+        const sale = fromCurrency(findById(fields, 'sale').value);
+        const installments = findById(fields, 'installments').value;
+        const mdr = findById(fields, 'mdr').value;
+
+        return setState({
+          items: createStateByDays(calculation(sale, installments, mdr)),
+        });
       }
 
-      return setState(
-        createState([0, 0, 0, 0]),
-      );
+      return setState({
+        items: createStateByDays([0, 0, 0, 0]),
+      });
     };
 
     const fieldSetSale = FieldSet({

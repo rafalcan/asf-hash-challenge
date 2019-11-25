@@ -1,7 +1,6 @@
 import jss from '@app/jss';
-import { createState } from '@app/helpers';
 import { colors, components } from '@app/theme/variables';
-import StateManager from '@app/services/StateManager';
+import StateManager, { createStateByDays } from '@app/services/StateManager';
 import Form from './components/Form';
 import Sidebar from './components/Sidebar';
 
@@ -21,7 +20,9 @@ const { classes } = jss.createStyleSheet(styles).attach();
 
 const Home = () => {
   const container = document.createElement('div');
-  const stateManager = new StateManager(createState([0, 0, 0, 0]));
+  const stateManager = StateManager({
+    items: createStateByDays([0, 0, 0, 0]),
+  });
 
   container.className = classes.home;
   container.appendChild(Form(stateManager));

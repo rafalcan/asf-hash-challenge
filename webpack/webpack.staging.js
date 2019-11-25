@@ -28,7 +28,8 @@ module.exports = merge(common, {
             options: {
               fallback: 'file-loader',
               limit: 10000,
-              name: '[path][name]-[hash].[ext]',
+              name: '[name]-[hash].[ext]',
+              outputPath: 'assets/',
             },
           },
           {
@@ -48,9 +49,6 @@ module.exports = merge(common, {
               gifsicle: {
                 interlaced: false,
               },
-              webp: {
-                quality: 70,
-              },
             },
           },
         ],
@@ -61,7 +59,8 @@ module.exports = merge(common, {
           {
             loader: 'file-loader',
             options: {
-              name: '[path][name]-[hash].[ext]',
+              name: '[name]-[hash].[ext]',
+              outputPath: 'assets/',
             },
           },
         ],
