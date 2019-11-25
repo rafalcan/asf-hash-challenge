@@ -1,10 +1,14 @@
 # Anticipation Simulation Form
 
 This project was created to discover the values of anticipation in a payment using a form to input the required like sale value, installments and MDR percentage.
-This is part of a Challenge to enter in the Hash.
+This is a challenge created by Hash.
 
 ## Decisions
-IN PROGRESS
+I used Webpack with babel for polyfills and build/development process, PubSub with Proxy structure to control the state of page, feature folder for organization of the files, CSS in JS (JSS) for styles, functional programming for the coding with componentization and use Native functions as much as possible for performance.
+
+My decisions to created the project like that was based on two main ideas:
+- To show how my knowledge of Javascript, patterns and guidelines it's updated.
+- And demonstrate that functional programming is powerful and a trend that you should consider in the next projects.
 
 ## Run application
 - First of all make sure you have Node installed and that you're using version 12+ by running: `node -v`.
@@ -26,7 +30,7 @@ Runs the app with mode staging (production files).
 The url `http://localhost:8080/`, but the script will open for you.
 
 ##### `npm run build`
-Runs the build process and export for `/dist` folder.
+Runs the build process and export for `/dist` folder in the root.
 
 ##### `npm run test`
 Runs the tests.
