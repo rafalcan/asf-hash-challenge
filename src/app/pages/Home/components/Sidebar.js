@@ -30,12 +30,12 @@ const styles = {
 const { classes } = jss.createStyleSheet(styles).attach();
 
 const Sidebar = (stateManager) => {
-  if (!(stateManager instanceof StateManager)) throw new Error('missing state manager');
+  if (typeof stateManager === 'undefined') throw new Error('missing state manager');
 
   const { subscribe, getState } = stateManager;
 
-  const updateItems = (container, state) => {
-    container.innerHTML = state.map(item => `
+  const updateItems = (container, items) => {
+    container.innerHTML = items.map(item => `
       <li class="${classes.item}">
         ${item.label}: <strong>${item.value}</strong>
       </li>
@@ -49,11 +49,11 @@ const Sidebar = (stateManager) => {
 
     subscribe((state) => {
       requestAnimationFrame(() => {
-        updateItems(container, state);
+        updateItems(container, state.items);
       });
     });
 
-    return updateItems(container, getState());
+    return updateItems(container, getState().items);
   };
 
   const render = () => {
