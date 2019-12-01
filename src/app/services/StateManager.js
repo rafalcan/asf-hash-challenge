@@ -1,5 +1,5 @@
 import config from '@app/config';
-import { toCurrency } from '@app/helpers';
+import { isEqual, toCurrency } from '@app/helpers';
 
 export default function StateManager(initialState = {}) {
   if (typeof initialState !== 'object' || Array.isArray(initialState)) {
@@ -41,7 +41,7 @@ export default function StateManager(initialState = {}) {
     getState,
     setState: new Proxy(setState, {
       apply(target, thisArgs, argumentsList) {
-        if (JSON.stringify(state) !== JSON.stringify(argumentsList[0])) {
+        if (!isEqual(state, argumentsList[0])) {
           Reflect.apply(target, thisArgs, argumentsList);
           notify();
         }
