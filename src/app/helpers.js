@@ -1,12 +1,11 @@
 import config from './config';
 
+const isEqual = (first, second) => JSON.stringify(first) === JSON.stringify(second);
+
 const findById = (list, value) => {
   if (list instanceof NodeList) {
-    for (const item of list.values()) {
-      if (item.id === value) return item;
-    }
-
-    return false;
+    const newList = Array.from(list);
+    return newList.find(item => item.id === value);
   }
 
   return list.find(item => item.id === value);
@@ -61,23 +60,22 @@ const calculation = (sale, installments, mdr) => {
   const division = sale / installments;
   const divisionMDR = division - (division * percent);
 
-  const defineDays = (day, step) => {
-    const calc = step - day;
-    return calc > 0 ? calc : 0;
-  };
-
-  return config.days.map((day) => {
-    let sum = 0;
-
-    for (let i = 1; i <= installments; i++) {
-      sum += divisionMDR - (divisionMDR * defineDays(day, i * 30) * percent / 30);
+  const make = (steps, day, lastCalc) => {
+    if (steps === 0) {
+      return Number(parseFloat(lastCalc).toFixed(2));
     }
 
-    return sum;
-  });
+    const days = steps * 30 - day;
+    const defineDays = days > 0 ? days : 0;
+    const calc = divisionMDR - (divisionMDR * defineDays * percent / 30);
+    return make(steps - 1, day, calc + lastCalc);
+  };
+
+  return config.days.map(day => make(installments, day, 0));
 };
 
 export {
+  isEqual,
   findById,
   fromCurrency,
   toCurrency,

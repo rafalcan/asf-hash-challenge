@@ -1,6 +1,5 @@
 import jss from '@app/jss';
 import { colors, components } from '@app/theme/variables';
-import StateManager from '@app/services/StateManager';
 
 const styles = {
   sidebar: {

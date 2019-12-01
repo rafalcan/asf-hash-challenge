@@ -1,4 +1,5 @@
 import {
+  isEqual,
   findById,
   fromCurrency,
   toCurrency,
@@ -7,6 +8,10 @@ import {
 } from './helpers';
 
 describe('Helpers tests', () => {
+  it('should be equals', () => {
+    expect(isEqual({ name: 'equals' }, { name: 'equals' })).toBeTruthy();
+  });
+
   it('should return an item by id from a collection', () => {
     const item = { id: 'field1', name: 'field1' };
     const list = [
