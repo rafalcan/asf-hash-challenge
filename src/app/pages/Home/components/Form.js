@@ -6,7 +6,7 @@ import {
   validation,
   calculation,
 } from '@app/helpers';
-import StateManager, { createStateByDays } from '@app/services/StateManager';
+import { createStateByDays } from '@app/services/StateManager';
 import FieldSet from '@app/components/FieldSet';
 
 const styles = {
