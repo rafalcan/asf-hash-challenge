@@ -11,14 +11,15 @@
      "ecmaFeatures":                {
          "jsx":                     true,
          "modules":                 true
-    },
+     },
      "sourceType":                  "module",
      "allowImportExportEverywhere": false,
      "codeFrame":                   false,
   },
   "rules":                          {
-    "import/no-unresolved":         [2, { ignore: ['@app', '@assets'] }],
-    "no-console":                   "off",
+    "import/no-unresolved":         ["error", { ignore: ['@app', '@assets'] }],
+    "import/extensions":            ["error", 'never'],
+    "no-console":                   0,
     "strict":                       0,
     "no-const-assign":              "warn",
     "linebreak-style":              0,

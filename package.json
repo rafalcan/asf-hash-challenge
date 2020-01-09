@@ -40,6 +40,9 @@
       ]
     ]
   },
+  "moduleRoots": [
+    "hyperclick-resolver.js"
+  ],
   "jest": {
     "coveragePathIgnorePatterns": [
       "/node_modules/"
