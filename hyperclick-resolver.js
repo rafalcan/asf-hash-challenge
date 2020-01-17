@@ -7,6 +7,10 @@ import path from 'path';
 export default function customResolver({ basedir, moduleName }) {
   const [prefix, ...rest] = moduleName.split('/');
 
+  if (prefix === '@env') {
+    return path.join(__dirname, '/src/environments/', rest.join('/'))
+  }
+
   if (prefix === '@app') {
     return path.join(__dirname, '/src/app/', rest.join('/'))
   }

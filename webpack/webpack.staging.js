@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const merge = require('webpack-merge');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
@@ -69,6 +70,10 @@ module.exports = merge(common, {
   },
   optimization: {
     minimizer: [
+      new webpack.NormalModuleReplacementPlugin(
+        /@env\/environment/,
+        '@env/environment.prod',
+      ),
       new CopyWebpackPlugin([
         { from: 'src/*.ico', flatten: true },
         { from: 'src/*.png', flatten: true },

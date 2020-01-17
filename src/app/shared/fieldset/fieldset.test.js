@@ -1,9 +1,9 @@
-import FieldSet from './FieldSet';
+import Fieldset from './fieldset';
 
-describe('FieldSet component tests', () => {
+describe('Fieldset component tests', () => {
   it('should renders without crashing', () => {
     expect(
-      FieldSet({
+      Fieldset({
         label: 'Field number',
         obs: 'Max 12',
         id: 'field1',
@@ -18,13 +18,13 @@ describe('FieldSet component tests', () => {
 
   it('should not renders without props', () => {
     expect(() => {
-      FieldSet();
+      Fieldset();
     }).toThrow('missing required props');
   });
 
   it('should not renders without required props', () => {
     expect(() => {
-      FieldSet({
+      Fieldset({
         obs: 'Max 12',
         id: 'field1',
         name: 'field1',

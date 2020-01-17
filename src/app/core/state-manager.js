@@ -1,5 +1,5 @@
-import config from '@app/config';
-import { isEqual, toCurrency } from '@app/helpers';
+import environment from '@env/environment';
+import { isEqual, toCurrency } from '@app/core/helpers';
 
 export default function StateManager(initialState = {}) {
   if (typeof initialState !== 'object' || Array.isArray(initialState)) {
@@ -50,8 +50,8 @@ export default function StateManager(initialState = {}) {
   });
 }
 
-export const createStateByDays = values => config.days.map((day, index) => {
-  const labels = config.labels;
+export const createStateByDays = values => environment.days.map((day, index) => {
+  const labels = environment.labels;
   const value = values[index];
 
   return {

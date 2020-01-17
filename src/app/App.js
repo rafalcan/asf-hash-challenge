@@ -1,5 +1,5 @@
 import jss from '@app/jss';
-import Home from '@app/pages/Home';
+import Home from '@app/pages/home';
 
 const styles = {
   app: {

@@ -1,5 +1,5 @@
-import StateManager, { createStateByDays } from '@app/services/StateManager';
-import Form from './Form';
+import StateManager, { createStateByDays } from '@app/core/state-manager';
+import Form from './form';
 
 describe('Form component tests', () => {
   it('should renders without crashing', () => {

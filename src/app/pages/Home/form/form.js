@@ -5,9 +5,9 @@ import {
   fromCurrency,
   validation,
   calculation,
-} from '@app/helpers';
-import { createStateByDays } from '@app/services/StateManager';
-import FieldSet from '@app/components/FieldSet';
+} from '@app/core/helpers';
+import { createStateByDays } from '@app/core/state-manager';
+import FieldSet from '@app/shared/fieldset';
 
 const styles = {
   form: {
@@ -47,7 +47,7 @@ const Form = (stateManager) => {
       });
     };
 
-    const fieldSetSale = FieldSet({
+    const fieldsetSale = FieldSet({
       label: 'Informe o valor da venda',
       id: 'sale',
       name: 'sale',
@@ -57,7 +57,7 @@ const Form = (stateManager) => {
       mask: true,
       keyup,
     });
-    const fieldSetInstallments = FieldSet({
+    const fieldsetInstallments = FieldSet({
       label: 'Em quantas parcelas',
       obs: 'Máximo de 12 parcelas',
       id: 'installments',
@@ -68,7 +68,7 @@ const Form = (stateManager) => {
       max: 12,
       keyup,
     });
-    const fieldSetMDR = FieldSet({
+    const fieldsetMDR = FieldSet({
       label: 'Informe o percentual de MDR',
       id: 'mdr',
       name: 'mdr',
@@ -80,9 +80,9 @@ const Form = (stateManager) => {
     });
 
     container.novalidate = true;
-    container.appendChild(fieldSetSale);
-    container.appendChild(fieldSetInstallments);
-    container.appendChild(fieldSetMDR);
+    container.appendChild(fieldsetSale);
+    container.appendChild(fieldsetInstallments);
+    container.appendChild(fieldsetMDR);
     fields = container.querySelectorAll('input');
 
     return container;

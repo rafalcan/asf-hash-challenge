@@ -1,4 +1,4 @@
-import config from './config';
+import environment from '@env/environment';
 
 const isEqual = (first, second) => JSON.stringify(first) === JSON.stringify(second);
 
@@ -21,8 +21,8 @@ const fromCurrency = (string) => {
 };
 
 const toCurrency = number => new Intl.NumberFormat(
-  config.language,
-  { style: 'currency', currency: config.currency },
+  environment.language,
+  { style: 'currency', currency: environment.currency },
 ).format(number).replace(/\s/g, ' ');
 
 const validation = (fields) => {
@@ -71,7 +71,7 @@ const calculation = (sale, installments, mdr) => {
     return make(steps - 1, day, calc + lastCalc);
   };
 
-  return config.days.map(day => make(installments, day, 0));
+  return environment.days.map(day => make(installments, day, 0));
 };
 
 export {
