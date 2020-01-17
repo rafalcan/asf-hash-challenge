@@ -1,0 +1,12 @@
+{
+  "language": "pt-BR",
+  "currency": "BRL",
+  "labels": {
+    "tomorrow": "Amanhã",
+    "in": "Em",
+    "days": "dias"
+  },
+  "days": [
+    0, 15, 30, 90
+  ]
+}

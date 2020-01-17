@@ -1,5 +1,5 @@
-import StateManager, { createStateByDays } from '@app/services/StateManager';
-import Sidebar from './Sidebar';
+import StateManager, { createStateByDays } from '@app/core/state-manager';
+import Sidebar from './sidebar';
 
 describe('Sidebar component tests', () => {
   it('should renders without crashing', () => {

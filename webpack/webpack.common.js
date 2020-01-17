@@ -6,7 +6,7 @@ const env = process.env.NODE_ENV;
 const root = `${__dirname}/../`;
 const common = {
   entry: {
-    main: path.join(root, 'index.js'),
+    main: path.join(root, '/src/index.js'),
   },
   output: {
     path: path.join(root, '/dist'),
@@ -33,6 +33,7 @@ const common = {
   resolve: {
     extensions: ['.js', '.json'],
     alias: {
+      '@env': path.join(root, '/src/environments/'),
       '@app': path.join(root, '/src/app/'),
       '@assets': path.join(root, '/src/assets/'),
     },

@@ -17,7 +17,7 @@
      "codeFrame":                   false,
   },
   "rules":                          {
-    "import/no-unresolved":         ["error", { ignore: ['@app', '@assets'] }],
+    "import/no-unresolved":         ["error", { ignore: ['@env', '@app', '@assets'] }],
     "import/extensions":            ["error", 'never'],
     "no-console":                   0,
     "strict":                       0,

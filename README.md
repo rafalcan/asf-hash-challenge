@@ -42,12 +42,14 @@ Runs the tests in the mode coverage.
 ```
 src/                              source code
 |- app/                           components and services of the source code
-|  |- components/                 shared components
+|  |- core/                       core logic of the application
 |  |- pages/                      pages components and your child components
+|  |- shared/                     shared components
 |  |- theme/                      global styles of application
-|  |- services/                   core logic of the application
-|  |- +- ...                      root app, helpers and configuration files
+|  |- +- ...                      root app and jss config
+|- environments/                  configurations by environment
 |- assets/                        assets (images, fonts, sounds, videos...)
+|- index.js                       start file of application for Webpack
 |- index.html                     main html of the project
 |- +- ...                         default files for favicon and indexation
 webpack/                          webpack files for each env
@@ -55,7 +57,7 @@ webpack/                          webpack files for each env
 .eslintrc                         configuration file of eslint
 .gitignore                        for prevent files from add in the commits
 .htmlhintrc                       configuration file of htmlhint
-index.js                          start file of application for Webpack
+hyperclick-resolver.js            configuration for js-hyperclick
 webpack.config.js                 for choose the correct env for run
 package.json                      package configuration
 ```

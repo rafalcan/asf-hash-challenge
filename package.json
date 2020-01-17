@@ -1,6 +1,6 @@
 {
   "name": "asf-hash-challenge",
-  "version": "1.1.0",
+  "version": "1.3.0",
   "author": "Rafael Gomes Alcantara",
   "description": "Challenge for create anticipation simulation form for Hash",
   "license": "ISC",
@@ -17,11 +17,11 @@
   },
   "homepage": "https://github.com/rafalcan/asf-hash-challenge#readme",
   "scripts": {
-    "serve": "NODE_ENV=development webpack-dev-server",
-    "serve:staging": "NODE_ENV=staging webpack-dev-server",
-    "build": "npm run test && NODE_ENV=production webpack",
-    "test": "NODE_ENV=test jest",
-    "coverage": "NODE_ENV=test jest --coverage"
+    "serve": "cross-env NODE_ENV=development webpack-dev-server",
+    "serve:staging": "cross-env NODE_ENV=staging webpack-dev-server",
+    "build": "npm run test && cross-env NODE_ENV=production webpack",
+    "test": "cross-env NODE_ENV=test jest",
+    "coverage": "cross-env NODE_ENV=test jest --coverage"
   },
   "browserslist": [
     "> 0.2%",
@@ -48,6 +48,7 @@
       "/node_modules/"
     ],
     "moduleNameMapper": {
+      "@env(.*)$": "<rootDir>/src/environments/$1",
       "@app(.*)$": "<rootDir>/src/app/$1",
       "@assets(.*)$": "<rootDir>/src/assets/$1"
     },
@@ -64,6 +65,7 @@
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.0.5",
     "core-js": "^3.4.1",
+    "cross-env": "^6.0.3",
     "deepmerge": "^4.2.2",
     "file-loader": "^4.2.0",
     "html-loader": "^0.5.5",

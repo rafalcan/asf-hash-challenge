@@ -1,6 +1,6 @@
 import jss from '@app/jss';
 import { colors } from '@app/theme/variables';
-import Field from '@app/components/Field';
+import Field from '@app/shared/field';
 
 const styles = {
   fieldset: {
@@ -23,7 +23,7 @@ const styles = {
 
 const { classes } = jss.createStyleSheet(styles).attach();
 
-const FieldSet = (props) => {
+const Fieldset = (props) => {
   if (typeof props === 'undefined') throw new Error('missing required props');
   if (!props.label || !props.id || !props.name || !props.type) {
     throw new Error('label, id, name and type are required');
@@ -46,4 +46,4 @@ const FieldSet = (props) => {
   return container;
 };
 
-export default FieldSet;
+export default Fieldset;
